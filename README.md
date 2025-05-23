@@ -43,3 +43,14 @@ root/
 ├── environment.yml                 # Conda environment configuration
 └── README.md
 ```
+---
+
+## ⚙️ Installation
+
+This project uses [Miniconda](https://docs.conda.io/en/latest/miniconda.html).  
+To create the environment:
+
+```bash
+conda env create -f environment.yml
+conda activate mobile_robots
+
