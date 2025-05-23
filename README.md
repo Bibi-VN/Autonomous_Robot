@@ -48,9 +48,9 @@ root/
 ## ⚙️ Installation
 
 1. Clone the repository (if applicable):
-  ```bash
-  git clone https://github.com/Bibi-VN/Mobile_Robot.git
-  ```
+   ```bash
+   git clone https://github.com/Bibi-VN/Mobile_Robot.git
+   ```
 2. Navigate to the project directory 
    ```bash
    cd ~/Mobile_Robot
