@@ -40,17 +40,25 @@ root/
 ├── worlds/                         # Webots simulation world
 │   └── kitchen.wbt
 ├── assets/                         # README images or visualizations
-├── environment.yml                 # Conda environment configuration
+  ├── environment.yml                 # Conda environment configuration
 └── README.md
 ```
 ---
 
 ## ⚙️ Installation
 
-This project uses [Miniconda](https://docs.conda.io/en/latest/miniconda.html).  
-To create the environment:
+1. Clone the repository (if applicable):
+  ```bash
+  git clone https://github.com/Bibi-VN/Mobile_Robot.git
+  ```
+2. Navigate to the project directory 
+   ```bash
+   cd ~/Mobile_Robot
+   ```
+3. Create and activate the Conda environment:  
+   This project uses [Miniconda](https://docs.conda.io/en/latest/miniconda.html).
 
-```bash
-conda env create -f environment.yml
-conda activate mobile_robots
-
+   ```bash
+   conda env create -f environment.yml
+   conda activate mobile_robots
+   ```
