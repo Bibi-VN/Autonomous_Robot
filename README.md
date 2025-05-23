@@ -25,6 +25,7 @@ The solution is designed such that the robot mimics how a human would perform th
 [Watch Video 2](https://youtu.be/2DOx8iX4RRk)
 
 ## Project Structure
+``` 
 root/
 ├── controllers/                    # Robot control scripts
 │   ├── Tiago_controller.py         # Main robot control logic
@@ -41,3 +42,4 @@ root/
 ├── assets/                         # README images or visualizations
 ├── environment.yml                 # Conda environment configuration
 └── README.md
+```
