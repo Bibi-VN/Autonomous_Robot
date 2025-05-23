@@ -26,18 +26,18 @@ The solution is designed such that the robot mimics how a human would perform th
 
 ## Project Structure
 root/
-├── controllers/ # Robot control scripts
+├── controllers/                      # Robot control scripts
 │   ├── Tiago_controller.py           # Main robot control logic
-│   ├── navigation.py                 # autonomous navigation based on provided waypoints
+│   ├── navigation.py                 # Autonomous navigation based on provided waypoints
 │   ├── mapping.py                    # Environment scanning and map building
 │   ├── planning.py                   # Path planning for navigation
-│   ├── set_waypoint.py               # Waypoint setting for navigation
+│   ├── set_waypoint.py               # Waypoint setting utility
 │   ├── manipulation.py               # Pick-and-place logic
 │   ├── recognition.py                # Object recognition for picking
 │   ├── object_selector.py            # Logic for selecting objects to manipulate
-│   └── straight_line_navigation.py   # straight-line navigation serve the picking process      
-├── worlds/ # Webots simulation world
-│ └── kitchen.wbt
-├── assets/ # README images or visualizations
-├── environment.yml # Conda environment configuration
-├── README.md
+│   └── straight_line_navigation.py   # Straight-line navigation supporting the picking process
+├── worlds/                           # Webots simulation world
+│   └── kitchen.wbt
+├── assets/                           # README images or visualizations
+├── environment.yml                   # Conda environment configuration
+└── README.md
