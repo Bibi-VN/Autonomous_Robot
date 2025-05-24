@@ -62,12 +62,7 @@ root/
    conda env create -f environment.yml
    conda activate mobile_robots
    ```
-
-## 🚀 Usage
-
-# (1) Launch the Webots simulation
-webots worlds/kitchen.wbt
-
-# (2) Alternatively, run the controller manually
-python3 controllers/Tiago_controller.py
-
+4. Launch the Webots simulation
+   ```bash
+   webots worlds/kitchen.wbt
+   ```
