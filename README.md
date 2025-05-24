@@ -62,7 +62,9 @@ root/
    conda env create -f environment.yml
    conda activate mobile_robots
    ```
-4. Launch the Webots simulation
+## 🚀 Usage
+1. Launch the Webots simulation
    ```bash
    webots worlds/kitchen.wbt
    ```
+2. Click the "Play" button in Webots after launching
