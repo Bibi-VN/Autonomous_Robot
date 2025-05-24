@@ -5,13 +5,13 @@ This project simulates the TIAGo mobile robot in a kitchen environment using Web
 ## 📽️ Demonstration
 Below are two videos demonstrating the robot's capabilities:
 
-### ▶️ Video 1: Mapping, Navigation, and Path Planning
+### Video 1: Mapping, Navigation, and Path Planning
 
 The robot follows a predefined trajectory to explore and build a map of the environment. Then, it performs path planing and navigation based on the constructed map.
 
-[Watch Video 1](https://youtu.be/cBmVXozQd8M)
+[▶️ Watch Video 1](https://youtu.be/cBmVXozQd8M)
 
-### ▶️ Video 2: Pick-and-Place Task Execution
+### Video 2: Pick-and-Place Task Execution
 
 The goal is that the robot can autonomously detect, grasp, and transfer three jars from a worktop surface to a designated position on a nearby table.
 
@@ -22,7 +22,7 @@ The solution is designed such that the robot mimics how a human would perform th
 4. Transfer it to the designated position on the table
 5. Repeat until the task is complete
 
-[Watch Video 2](https://youtu.be/2DOx8iX4RRk)
+[▶️ Watch Video 2](https://youtu.be/2DOx8iX4RRk)
 
 ## 📁 Project Structure
 ``` 
@@ -80,7 +80,7 @@ root/
 
 ## 🧠 Behavior Architecture
 
-The robot's high-level behavior is structured as a hierarchical **Behavior Tree (BT)**, consisting of modular subtrees for mapping, perception, planning, navigation, and manipulation.
+The robot's behavior is structured as a hierarchical **Behavior Tree (BT)**, consisting of modules for mapping, perception, planning, navigation, and manipulation.
 
 ### 🔹 Root Node: `Main` (Sequence)
 
@@ -89,7 +89,7 @@ The robot's high-level behavior is structured as a hierarchical **Behavior Tree 
   - `Mapping`: A parallel block that performs simultaneous navigation and mapping if no map exists
 
 - **Pick-and-Place Cycles**:
-  - Three repeated `PickAndPlaceN` sequences handle autonomous object manipulation
+  - Three repeated `PickAndPlace` sequences handle autonomous object manipulation
 
 ---
 
@@ -98,32 +98,33 @@ The robot's high-level behavior is structured as a hierarchical **Behavior Tree 
 This subtree includes:
 
 1. **Perception**
-   - `Recognition`: Detects jars
-   - `ObjectSelector`: Chooses a target object
+   - `Recognition`: detects jars
+   - `ObjectSelector`: chooses one of detected jars
 
 2. **Approach and Pick**
-   - `SetWaypoint`: Plans approach path
-   - `StraightLineNavigation`: Executes safe approach
+   - `SetWaypoint`: sets goal to approach the detected jar
+   - `StraightLineNavigation`: executes safe approach to jar
    - `Manipulation (reach, closeGripper)`
 
 3. **Placement**
-   - `Planning + Navigation`: Multi-step path to table
-   - `Manipulation (put, openGripper)`
+   - `Planning + Navigation`: multi-step path to table
+   - `Manipulation (put, openGripper, safe)`
 
 4. **Return**
-   - `Planning + Navigation`: Path back to worktop
-
+   - `Planning + Navigation`: multi-step path back to worktop
+   
+> **Note:** The multi-step navigation to and from the table is necessary due to the robot's kinematic constraints. The TIAGo base cannot execute tight turning angles directly, so the path is divided into smaller segments to ensure feasible execution.
 ---
 
 ### 🧩 Behavior Tree Modules by Function
 
 | Functionality      | Nodes Used                                              |
 |--------------------|---------------------------------------------------------|
-| **Mapping**        | `DoesMapExist`, `Mapping`, `Navigation` (Parallel)      |
+| **Mapping**        | `DoesMapExist`, `Mapping`, `Navigation`                 |
 | **Perception**     | `Recognition`, `ObjectSelector`                         |
 | **Waypoint Planning** | `SetWaypoint`                                        |
 | **Navigation**     | `Planning`, `Navigation`, `StraightLineNavigation`      |
-| **Manipulation**   | `Manipulation (reach, grip, put, safe, openGripper)`    |
+| **Manipulation**   | `Manipulation (reach, grip, put, safe,...)`    |
 
 > Behavior logic is fully implemented using `py_trees`, and each Pick-and-Place cycle is built using `create_pick_place_sequence(...)`.
 
