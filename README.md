@@ -1,17 +1,17 @@
-# Simulation of Mobile Robot
+# 🤖 Simulation of Mobile Robot
 
 This project simulates the TIAGo mobile robot in a kitchen environment using Webots and Python.
 
-## Demonstration:
+## 📽️ Demonstration
 Below are two videos demonstrating the robot's capabilities:
 
-### Video 1: Mapping, Navigation, and Path Planning
+### ▶️ Video 1: Mapping, Navigation, and Path Planning
 
 The robot follows a predefined trajectory to explore and build a map of the environment. Then, it performs path planing and navigation based on the constructed map.
 
 [Watch Video 1](https://youtu.be/cBmVXozQd8M)
 
-### Video 2: Pick-and-Place Task Execution
+### ▶️ Video 2: Pick-and-Place Task Execution
 
 The goal is that the robot can autonomously detect, grasp, and transfer three jars from a worktop surface to a designated position on a nearby table.
 
@@ -24,7 +24,7 @@ The solution is designed such that the robot mimics how a human would perform th
 
 [Watch Video 2](https://youtu.be/2DOx8iX4RRk)
 
-## Project Structure
+## 📁 Project Structure
 ``` 
 root/
 ├── controllers/                    # Robot control scripts
@@ -77,3 +77,58 @@ root/
    ```
    
 3. Click the "Play" button in Webots after launching
+
+## 🧠 Behavior Architecture
+
+The robot's high-level behavior is structured as a hierarchical **Behavior Tree (BT)**, consisting of modular subtrees for mapping, perception, planning, navigation, and manipulation.
+
+### 🔹 Root Node: `Main` (Sequence)
+
+- **Check Map** (Selector):
+  - `DoesMapExist`: Checks if a prior map is available
+  - `Mapping`: A parallel block that performs simultaneous navigation and mapping if no map exists
+
+- **Pick-and-Place Cycles**:
+  - Three repeated `PickAndPlaceN` sequences handle autonomous object manipulation
+
+---
+
+### 🔹 PickAndPlaceN (Sequence)
+
+This subtree includes:
+
+1. **Perception**
+   - `Recognition`: Detects jars
+   - `ObjectSelector`: Chooses a target object
+
+2. **Approach and Pick**
+   - `SetWaypoint`: Plans approach path
+   - `StraightLineNavigation`: Executes safe approach
+   - `Manipulation (reach, closeGripper)`
+
+3. **Placement**
+   - `Planning + Navigation`: Multi-step path to table
+   - `Manipulation (put, openGripper)`
+
+4. **Return**
+   - `Planning + Navigation`: Path back to worktop
+
+---
+
+### 🧩 Behavior Tree Modules by Function
+
+| Functionality      | Nodes Used                                              |
+|--------------------|---------------------------------------------------------|
+| **Mapping**        | `DoesMapExist`, `Mapping`, `Navigation` (Parallel)      |
+| **Perception**     | `Recognition`, `ObjectSelector`                         |
+| **Waypoint Planning** | `SetWaypoint`                                        |
+| **Navigation**     | `Planning`, `Navigation`, `StraightLineNavigation`      |
+| **Manipulation**   | `Manipulation (reach, grip, put, safe, openGripper)`    |
+
+> Behavior logic is fully implemented using `py_trees`, and each Pick-and-Place cycle is built using `create_pick_place_sequence(...)`.
+
+
+
+## 📄 License
+
+## 👤 Author
