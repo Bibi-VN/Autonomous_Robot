@@ -7,7 +7,7 @@ Below are two videos demonstrating the robot's capabilities:
 
 ### Video 1: Mapping, Navigation, and Path Planning
 
-The robot follows a predefined trajectory to explore and build a map of the environment. Then, it perfroms path planing and navigation based on the constructed map.
+The robot follows a predefined trajectory to explore and build a map of the environment. Then, it performs path planing and navigation based on the constructed map.
 
 [Watch Video 1](https://youtu.be/cBmVXozQd8M)
 
@@ -18,7 +18,7 @@ The goal is that the robot can autonomously detect, grasp, and transfer three ja
 The solution is designed such that the robot mimics how a human would perform the task. The behavior is structured using a behavior tree and involves the following steps:
 1. Move to the worktop
 2. Detect the presence of target jars
-3. Select and pick one of detected jars
+3. Select and pick one of the detected jars
 4. Transfer it to the designated position on the table
 5. Repeat until the task is complete
 
@@ -40,7 +40,7 @@ root/
 ├── worlds/                         # Webots simulation world
 │   └── kitchen.wbt
 ├── assets/                         # README images or visualizations
-  ├── environment.yml                 # Conda environment configuration
+├── environment.yml                 # Conda environment configuration
 └── README.md
 ```
 ---
@@ -67,4 +67,13 @@ root/
    ```bash
    webots worlds/kitchen.wbt
    ```
-2. Click the "Play" button in Webots after launching
+2. Webots Integration to use your Conda environment in Webots:
+   Open Webots
+   Go to **Tools → Preferences**
+   Set **Python command** to the full path of the Conda Python:
+
+   ```bash
+   /home/your_username/miniconda3/envs/mobile_robots/bin/python
+   ```
+   
+3. Click the "Play" button in Webots after launching
