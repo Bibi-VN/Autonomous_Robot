@@ -68,9 +68,9 @@ root/
    webots worlds/kitchen.wbt
    ```
 2. Webots Integration to use your Conda environment in Webots:
-   Open Webots
-   Go to **Tools → Preferences**
-   Set **Python command** to the full path of the Conda Python:
+   1. Open Webots
+   2. Go to **Tools → Preferences**
+   3. Set **Python command** to the full path of the Conda Python:
 
    ```bash
    /home/your_username/miniconda3/envs/mobile_robots/bin/python
